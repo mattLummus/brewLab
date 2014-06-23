@@ -11,37 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619020620) do
+ActiveRecord::Schema.define(version: 20140623172453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "brews", force: true do |t|
-    t.boolean  "finished"
-    t.boolean  "automated"
-    t.string   "arduinoip"
-    t.string   "arduinoapikey"
-    t.string   "name"
-    t.datetime "datebrewed"
-    t.datetime "datebottled"
-    t.string   "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "brewing_finished"
-    t.boolean  "cooling_finished"
-    t.boolean  "fermenting_finished"
-  end
-
-  create_table "phases", force: true do |t|
-    t.string   "type"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "temperature"
-    t.string   "light_level"
-    t.string   "bpm"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
