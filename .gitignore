@@ -14,3 +14,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore brewery_db API config
+/config/initializers/brewerydb.rb

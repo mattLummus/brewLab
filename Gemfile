@@ -30,6 +30,8 @@ gem 'haml-rails'
 # gem 'postmark-rails'
 # Improves on Rails form_for:
 gem 'simple_form'
+#brewery_db access
+gem 'brewery_db'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
