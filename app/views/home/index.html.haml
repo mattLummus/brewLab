@@ -1,5 +1,36 @@
 - if user_signed_in?
-  /- @styles.each do |style| puts style.name end
+
+  %h2 Styles
+  %ul#styles.list
+  - @styles.each do |style|
+    %li.item
+      = style.name
+      = style.category.name
+
+  %h2 Hops
+  %ul#hops.list
+  - @hops.each do |hop|
+    %li.item
+      = hop.name
+
+  %h2 Malts
+  %ul#fermentables.list
+  - @fermentables.each do |fermentable|
+    %li.item
+      = fermentable.name
+
+  %h2 Yeast Strains
+  %ul#yeasts.list
+  - @yeasts.each do |yeast|
+    %li.item
+      = yeast.name
+
+  %h2 Additional Ingredients
+  %ul#adjuncts.list
+  - @adjuncts.each do |adjunct|
+    %li.item
+      = adjunct.name
+
 
 - else
   %h1 Welcome to brewLab!
