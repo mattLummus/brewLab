@@ -1,4 +1,5 @@
 - if user_signed_in?
+  %h1= link_to "Recipe Calculator", 'calc'
   %h2= link_to "Beer Styles", 'styles/index'
   %h2= link_to "Hop Styles", 'hops/index'
   %h2= link_to "Malt Styles", 'malts/index'
@@ -6,5 +7,3 @@
 - else
   %h1 Welcome to brewLab!
   %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
-  %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
-  %h3 You can also enter data manually if you don't have access to an Arduino
