@@ -1,7 +1,11 @@
 - if user_signed_in?
-  %h2= link_to "Beer Styles", 'styles/index'
-  %h2= link_to "Hop Styles", 'hops/index'
-  %h2= link_to "Malt Styles", 'malts/index'
+  #columns
+    %h2 Malts
+    %ul#malts.list
+    - @malts.each do |malt|
+      - if malt.description?
+        %li.item
+          = link_to malt.name, "show?id=#{malt.id}"
 
 - else
   %h1 Welcome to brewLab!

@@ -1,0 +1,17 @@
+- if user_signed_in?
+  %h2= link_to "Malt Styles", '/malts/index'
+  %h2= @malt.name
+  - if @malt.country?
+    %h2= @malt.country.display_name
+  %p= @malt.description
+  - if @malt.characteristics?
+    %p= @malt.characteristics[0].description
+  %h4= "Potential(PPG): #{(@malt.potential-1)*1000}"
+  %h4= "Dry Yield: #{@malt.dry_yield}"
+  %h4= "Max in Batch: #{@malt.max_in_batch}"
+  %h4= "Moisture Content: #{@malt.moisture_content}"
+  %h4= "Protein: #{@malt.protein}"
+  %h4= "Requires Mashing: #{@malt.requires_mashing}"
+
+- else
+  %h2 Please Try Again

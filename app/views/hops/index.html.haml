@@ -3,7 +3,7 @@
     %h2 Hops
     %ul#hops.list
     - @hops.each do |hop|
-      -if hop.description?
+      - if hop.description?
         %li.item
           = link_to hop.name, "show?id=#{hop.id}"
 
