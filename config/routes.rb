@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'style/show' => 'style#show'
+  get 'styles/index' => 'style#index'
+  get 'styles/show' => 'style#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

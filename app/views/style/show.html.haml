@@ -1,4 +1,5 @@
 - if user_signed_in?
+  %h2= link_to "Beer Styles", '/styles/index'
   %h2= @style.name
   %h3= @style.category.name
   %p= @style.description
