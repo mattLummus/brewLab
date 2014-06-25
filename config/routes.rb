@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'styles/index' => 'style#index'
   get 'styles/show' => 'style#show'
+  get 'hops/index' => 'hops#index'
+  get 'hops/show' => 'hops#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

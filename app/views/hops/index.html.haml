@@ -1,6 +1,11 @@
 - if user_signed_in?
-  %h2= link_to "Beer Styles", 'styles/index'
-  %h2= link_to "Hop Styles", 'hops/index'
+  #columns
+    %h2 Hops
+    %ul#hops.list
+    - @hops.each do |hop|
+      -if hop.description?
+        %li.item
+          = link_to hop.name, "show?id=#{hop.id}"
 
 - else
   %h1 Welcome to brewLab!
