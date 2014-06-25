@@ -3,7 +3,7 @@
     %h2 Malts
     %ul#malts.list
     - @malts.each do |malt|
-      - if malt.description?
+      - if malt.potential?
         %li.item
           = link_to malt.name, "show?id=#{malt.id}"
 

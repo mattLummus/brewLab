@@ -6,7 +6,8 @@
   %p= @malt.description
   - if @malt.characteristics?
     %p= @malt.characteristics[0].description
-  %h4= "Potential(PPG): #{(@malt.potential-1)*1000}"
+  - if @malt.potential?
+    %h4= "Potential(PPG): #{((@malt.potential-1)*1000).round(2)}"
   %h4= "Dry Yield: #{@malt.dry_yield}"
   %h4= "Max in Batch: #{@malt.max_in_batch}"
   %h4= "Moisture Content: #{@malt.moisture_content}"
