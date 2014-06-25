@@ -1,5 +1,70 @@
 - if user_signed_in?
-  %h1 Recipe Calculator
+  #recipe_top_banner
+    %h1 Recipe Calculator
+    #boil_vol Boil Volume
+  #recipe_middle_banner
+    .left
+      %h4 Hops
+      %table#hop_list
+        %th
+          %td Name
+          %td Alpha Acid
+          %td Caryophyllene
+          %td Cohumulone
+          %td Farnesene
+          %td Humulene
+        -@hops.each do |hop|
+          -if hop.alpha_acid_min?
+            %tr
+              %td
+              %td= hop.name
+              %td= "#{(hop.alpha_acid_min*1.10).round(2)}"
+              -if hop.caryophyllene_min?
+                %td= "#{((hop.caryophyllene_max + hop.caryophyllene_min)/2).round(2)}"
+              -if hop.cohumulone_min?
+                %td= "#{((hop.cohumulone_max + hop.cohumulone_min)/2).round(2)}"
+              -if hop.farnesene_min?
+                %td= "#{((hop.farnesene_max + hop.farnesene_min)/2).round(2)}"
+              -if hop.humulene_min?
+                %td= "#{((hop.humulene_max + hop.humulene_min)/2).round(2)}"
+      
+      %h4 Bittering Hops
+      %table#bitter_table
+        %tr
+          %td Hop One
+          %td AAU
+          %td Weight(oz)
+          %td Time(min)
+        %tr
+          %td Hop Two
+          %td AAU
+          %td Weight(oz)
+          %td Time(min)
+        %tr
+          %td Total AAU
+          %td 5.7
+      %h4 Aroma Hops
+      %table#aroma_table
+        %tr
+          %td Hop One
+          %td AAU
+          %td Weight(oz)
+          %td Time(min)
+        %tr
+          %td Hop Two
+          %td AAU
+          %td Weight(oz)
+          %td Time(min)
+      %h4 Malts
+      %table#malt_table
+        %tr
+          %td Malt One
+          %td PPG
+          %td Weight(oz)
+        %tr
+          %td Malt Two
+          %td PPG
+          %td Weight(oz)
 
 - else
   %h1 Welcome to brewLab!
