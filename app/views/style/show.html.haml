@@ -1,0 +1,17 @@
+- if user_signed_in?
+  %h2= @style.name
+  %h3= @style.category.name
+  %p= @style.description
+  %h4= "ABV minimum: #{@style.abv_min}"
+  %h4= "ABV maximum: #{@style.abv_max}"
+  %h4= "Original Gravity minimum: #{@style.og_min}"
+  %h4= "Original Gravity maximum: #{@style.og_max}"
+  %h4= "Final Gravity minimum: #{@style.fg_min}"
+  %h4= "Final Gravity maximum: #{@style.fg_max}"
+  %h4= "IBU minimum: #{@style.ibu_min}"
+  %h4= "IBU maximum: #{@style.ibu_max}"
+  %h4= "SRM(color) minimum: #{@style.srm_min}"
+  %h4= "SRM(color) maximum: #{@style.srm_max}"
+
+- else
+  %h2 Please Try Again

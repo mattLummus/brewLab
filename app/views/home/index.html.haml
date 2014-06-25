@@ -2,41 +2,9 @@
   #columns
     %h2 Styles
     %ul#styles.list
-    - @scount = 0
     - @styles.each do |style|
-      - @scount = @scount +1
       %li.item
-        = @scount
-        = style.name
-        /= style.category.name
-
-    %h2 Hops
-    %ul#hops.list
-    - @hcount = 0
-    - @hops.each do |hop|
-      - @hcount = @hcount +1
-      %li.item
-        = @hcount
-        = hop.name
-
-    %h2 Malts
-    %ul#fermentables.list
-    - @fcount = 0
-    - @fermentables.each do |fermentable|
-      - @fcount = @fcount +1
-      %li.item
-        = @fcount
-        = fermentable.name
-
-    %h2 Yeast Strains
-    %ul#yeasts.list
-    - @ycount = 0
-    - @yeasts.each do |yeast|
-      - @ycount = @ycount +1
-      %li.item
-        = @ycount
-        = yeast.name
-
+        = link_to style.name, "style/show?id=#{style.id}"
 
 - else
   %h1 Welcome to brewLab!
