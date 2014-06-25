@@ -3,8 +3,9 @@
     %h2 Styles
     %ul#styles.list
     - @styles.each do |style|
-      %li.item
-        = link_to style.name, "show?id=#{style.id}"
+      - if style.abv_min?
+        %li.item
+          = link_to style.name, "show?id=#{style.id}"
 
 - else
   %h1 Welcome to brewLab!
