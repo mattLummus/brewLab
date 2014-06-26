@@ -1,24 +1,47 @@
 - if user_signed_in?
   #recipe_top_banner
     %h1 Recipe Calculator
-    #boil_vol Boil Volume
+    #style
+      -if @style
+        %h4= @style.name
+        %h5= @style.category.name
+        %p= @style.description
+        %table#style_table
+          %th
+            %td= "ABV Range"
+            %td= "OG Min"
+            %td= "FG Range"
+            %td= "IBU Range"
+            %td= "SRM Min"
+            %td= "SRM Max"
+          %tr
+            %td
+              %td= "#{@style.abv_min}-#{@style.abv_max}"
+              %td= "#{@style.og_min}"
+              %td= "#{@style.fg_min}-#{@style.fg_max}"
+              %td= "#{@style.ibu_min}-#{@style.ibu_max}"
+              %td{:class => "srm-#{@style.srm_min}"}= "#{@style.srm_min}"
+              %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
   #recipe_middle_banner
     .left
       %h4 Hops
-      %table#hop_list
+      %table#hop_table
         %th
           %td Name
           %td Alpha Acid
+          %td Beta Acid
           %td Caryophyllene
           %td Cohumulone
           %td Farnesene
           %td Humulene
+          %td Myrcene
         -@hops.each do |hop|
           -if hop.alpha_acid_min?
             %tr
               %td
               %td= hop.name
               %td= "#{(hop.alpha_acid_min*1.10).round(2)}"
+              %td= "#{((hop.beta_acid_max + hop.beta_acid_min)/2).round(2)}"
               -if hop.caryophyllene_min?
                 %td= "#{((hop.caryophyllene_max + hop.caryophyllene_min)/2).round(2)}"
               -if hop.cohumulone_min?
@@ -27,6 +50,30 @@
                 %td= "#{((hop.farnesene_max + hop.farnesene_min)/2).round(2)}"
               -if hop.humulene_min?
                 %td= "#{((hop.humulene_max + hop.humulene_min)/2).round(2)}"
+              -if hop.myrcene_min?
+                %td= "#{((hop.myrcene_max + hop.myrcene_min)/2).round(2)}"
+      %h4 Malts
+      %table#malt_table
+        %th
+          %td Name
+          %td PPG
+          %td Dry Yield
+          %td SRM
+        -@malts.each do |malt|
+          -if malt.potential?
+            %tr
+              %td
+                %td= malt.name
+                %td= "#{((malt.potential-1)*1000).round(2)}"
+                %td= malt.dry_yield
+                -if malt.srm?
+                  -if malt.srm_id.to_i < 19
+                    %td{:style => "background-color: ##{malt.srm.hex}"}= "#{malt.srm_id}"
+                  -else
+                    %td{:style => "background-color: ##{malt.srm.hex}; color: white"}= "#{malt.srm_id}"
+                -else
+                  %td
+
       
       %h4 Bittering Hops
       %table#bitter_table
