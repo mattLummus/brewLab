@@ -64,6 +64,9 @@ GEM
       multipart-post (~> 1.2.0)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     foundation-rails (5.3.0.1)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -200,6 +203,7 @@ DEPENDENCIES
   devise
   email_spec
   fabrication
+  figaro
   foundation-rails
   haml-rails
   jbuilder (~> 2.0)

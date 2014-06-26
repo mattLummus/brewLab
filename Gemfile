@@ -32,6 +32,8 @@ gem 'haml-rails'
 gem 'simple_form'
 #brewery_db access
 gem 'brewery_db'
+#env vars
+gem 'figaro'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

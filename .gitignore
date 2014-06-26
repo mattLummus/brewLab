@@ -16,4 +16,7 @@
 /tmp
 
 # Ignore brewery_db API config
-/config/initializers/brewerydb.rb
+#/config/initializers/brewerydb.rb
+
+# Ignore application configuration
+/config/application.yml
