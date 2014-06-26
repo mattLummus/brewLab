@@ -23,8 +23,7 @@
               %td{:class => "srm-#{@style.srm_min}"}= "#{@style.srm_min}"
               %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
   #recipe_calc
-    
-
+    %form#recipe_form
 
   #recipe_ingredients
     .left
@@ -43,7 +42,8 @@
           -if hop.alpha_acid_min?
             %tr
               %td
-              %td= hop.name
+              %td
+                %button{:name => "#{hop.name}", :class => "ingredient hop", :dataid => hop.id}= hop.name
               %td= "#{(hop.alpha_acid_min*1.10).round(2)}"
               %td= "#{((hop.beta_acid_max + hop.beta_acid_min)/2).round(2)}"
               -if hop.caryophyllene_min?
@@ -67,16 +67,17 @@
           -if malt.potential?
             %tr
               %td
-                %td= malt.name
-                %td= "#{((malt.potential-1)*1000).round(2)}"
-                %td= malt.dry_yield
-                -if malt.srm?
-                  -if malt.srm_id.to_i < 19
-                    %td{:style => "background-color: ##{malt.srm.hex}"}= "#{malt.srm_id}"
-                  -else
-                    %td{:style => "background-color: ##{malt.srm.hex}; color: white"}= "#{malt.srm_id}"
+              %td
+                %button{:name => "#{malt.name}", :class => "ingredient malt"}= malt.name
+              %td= "#{((malt.potential-1)*1000).round(2)}"
+              %td= malt.dry_yield
+              -if malt.srm?
+                -if malt.srm_id.to_i < 19
+                  %td{:style => "background-color: ##{malt.srm.hex}"}= "#{malt.srm_id}"
                 -else
-                  %td
+                  %td{:style => "background-color: ##{malt.srm.hex}; color: white"}= "#{malt.srm_id}"
+              -else
+                %td
 
       
       %h4 Bittering Hops
