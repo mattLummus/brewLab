@@ -24,7 +24,6 @@
               %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
   #recipe_calc
     #recipe_stats
-    = form_for @recipe do |f|
     %form#recipe_form{:action => "/recipes", :method => "post"}
       %input#recipe_title{:name => "title"}
       %textarea#recipe_text{:name => "notes", :cols => "50", :rows => "4"}
