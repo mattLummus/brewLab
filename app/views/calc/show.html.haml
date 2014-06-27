@@ -24,9 +24,11 @@
               %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
   #recipe_calc
     #recipe_stats
-    %form#recipe_form
-      %textarea#recipe_text{cols: "50", rows: "4"}
-      %button#recipe_submit= "Submit!"
+    = form_for @recipe do |f|
+    %form#recipe_form{:action => "/recipes", :method => "post"}
+      %input#recipe_title{:name => "title"}
+      %textarea#recipe_text{:name => "notes", :cols => "50", :rows => "4"}
+      %input#recipe_submit{:type => "submit"}
     %button#ibu_button= "Get IBU!"
     %input#total_vol_input{:placeholder => "Total Volume(gallons)"}
     %input#boil_vol_input{:placeholder => "Boil Volume(gallons)"}
