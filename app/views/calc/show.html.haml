@@ -22,8 +22,12 @@
               %td= "#{@style.ibu_min}-#{@style.ibu_max}"
               %td{:class => "srm-#{@style.srm_min}"}= "#{@style.srm_min}"
               %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
+  #recipe_cal
   #recipe_calc
     %form#recipe_form
+    %button#ibu_button= "Get IBU!"
+    %input#total_vol_input{:placeholder => "Total Volume(gallons)"}
+    %input#boil_vol_input{:placeholder => "Boil Volume(gallons)"}
 
   #recipe_ingredients
     .left
@@ -43,7 +47,7 @@
             %tr
               %td
               %td
-                %button{:name => "#{hop.name}", :class => "ingredient hop", :dataid => hop.id}= hop.name
+                %button{:name => "#{hop.name}", :class => "ingredient", :dataid => hop.id, :datatype => "hop", :dataunit => (hop.alpha_acid_min*1.10).round(2)}= hop.name
               %td= "#{(hop.alpha_acid_min*1.10).round(2)}"
               %td= "#{((hop.beta_acid_max + hop.beta_acid_min)/2).round(2)}"
               -if hop.caryophyllene_min?
@@ -68,7 +72,7 @@
             %tr
               %td
               %td
-                %button{:name => "#{malt.name}", :class => "ingredient malt"}= malt.name
+                %button{:name => "#{malt.name}", :class => "ingredient", :dataid => malt.id, :datatype => "malt", :dataunit => ((malt.potential-1)*1000).round(2)}= malt.name
               %td= "#{((malt.potential-1)*1000).round(2)}"
               %td= malt.dry_yield
               -if malt.srm?
