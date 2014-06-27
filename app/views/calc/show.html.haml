@@ -22,9 +22,11 @@
               %td= "#{@style.ibu_min}-#{@style.ibu_max}"
               %td{:class => "srm-#{@style.srm_min}"}= "#{@style.srm_min}"
               %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
-  #recipe_cal
   #recipe_calc
+    #recipe_stats
     %form#recipe_form
+      %textarea#recipe_text{cols: "50", rows: "4"}
+      %button#recipe_submit= "Submit!"
     %button#ibu_button= "Get IBU!"
     %input#total_vol_input{:placeholder => "Total Volume(gallons)"}
     %input#boil_vol_input{:placeholder => "Boil Volume(gallons)"}

@@ -6,23 +6,32 @@
 
   var hopArray = [];
   var maltArray = [];
-  var boilVolume;
-  var totalVolume;
-  var origGravity;
-  var boilGravity;
-  var hopWeight;
-  var hopAAU;
-  var IBU;
+  var boilVolume = 0;
+  var totalVolume = 0;
+  var origGravity = 0;
+  var boilGravity = 0;
+  var hopWeight = 0;
+  var hopAAU = 0;
+  var IBU = 0;
 
   function initialize(){
     $('.ingredient').click(getIngredient);
     $('#recipe_form').on('click', '.remove_button', removeLine);
     $('#ibu_button').click(getVolume);
+    hideFields();
+  }
+
+  function hideFields(){
+    $('#recipe_text').hide();
+    $('#recipe_submit').hide();
+  }
+
+  function showFields(){
+    $('#recipe_text').show();
+    $('#recipe_submit').show();
   }
 
   function getIngredient(){
-    console.log(this);
-    console.log(this.getAttribute('dataid'));
     addIngredient(this);
   }
 
@@ -42,6 +51,8 @@
     $unit.val(ingUnit);
     var $weight = $('<input placeholder="Weight (oz)">');
     var $time = $('<input placeholder="Time (min)">');
+    var $name = $('<input>');
+    $name.val(ingName);
 
     $($line).addClass(ingType);
     $($line).append($button);
@@ -49,8 +60,10 @@
     $($line).append($weight);
     $($line).append($time);
     $($line).append($unit);
+    $($line).append($name);
     $($ingID).hide();
     $($unit).hide();
+    $($name).hide();
     $('#recipe_form').append($line);
   }
 
@@ -84,8 +97,8 @@
       var weight = children[2].value;
       var time = children[3].value;
       var aau = children[4].value;
-      console.log("hop id: "+id+" weight: "+weight+" time: "+time+" AAU: "+aau);
-      var tempArray = [id, weight, time, aau];
+      var name = children[5].value;
+      var tempArray = [id, weight, time, aau, name];
       hopArray.push(tempArray);
     }
     getMalts();
@@ -107,25 +120,51 @@
       var weight = children[2].value;
       var time = children[3].value;
       var ppg = children[4].value;
-      console.log("malt id: "+id+" weight: "+weight+" time: "+time+" PPG: "+ppg);
-      var tempArray = [id, weight, time, ppg];
+      var name = children[5].value;
+      var tempArray = [id, weight, time, ppg, name];
       maltArray.push(tempArray);
     }
     getIBU();
   }
 
+  function writeText(){
+    var string = "Total Volume "+totalVolume+"gallons | Boil Volume "+boilVolume+"gallons | "
+    string += "Original Gravity "+origGravity.toFixed(3)+" | Boil Gravity "+boilGravity.toFixed(3)+" | "
+    string += "IBU "+Math.round(IBU)+" | "
+    string += parseHops();
+    string += parseMalts();
+    console.log('maltArray', maltArray);
+    console.log('hopArray', hopArray);
+    $('#recipe_text').val(string);
+  }
+
+  function parseHops(){
+   var string = "";
+   for (var i=0; i<hopArray.length; i++){
+    var hop = hopArray[i];
+    var weight = hop[1];
+    var minutes = hop[2];
+    var name = hop[4];
+    string += weight+"(oz) "+name+" "+minutes+" minutes | "
+   }
+   return string;
+  }
+
+  function parseMalts(){
+   var string = ""
+   for (var i=0; i<maltArray.length; i++){
+    var malt = maltArray[i];
+    var weight = malt[1];
+    var minutes = malt[2];
+    var name = malt[4];
+    string += weight+"(oz) "+name+" "+minutes+" minutes | "
+   }
+   return string;
+  }
+
   function getIBU(){
-
-
-    console.log("hopArray", hopArray);
-    console.log("maltArray", maltArray);
-
     boilGravity = getGravity(maltArray, boilVolume);
     origGravity = getGravity(maltArray, totalVolume);
-
-    console.log("boilGrav", boilGravity);
-    console.log("origGrav", origGravity);
-    
     var GA;
     if(boilGravity > 1.05){
       GA = (boilGravity - 1.050) / 2;
@@ -137,18 +176,13 @@
       var hop = hopArray[i];
       var weight = parseFloat(hop[1]);
       var minutes = parseInt(hop[2]);
-      console.log('minutes', minutes);
       var aau = parseFloat(hop[3]);
       var util = utilization(minutes);
-      console.log('util', util);
-      console.log('weight', weight);
-      console.log('aau', aau);
-      console.log('totalVolume', totalVolume);
-      console.log('GA', GA);
       var tempIBU = ( (weight * aau * util * 75) / (totalVolume*(1+GA)) );
-      console.log('tempIBU', IBU);
       IBU += tempIBU;
     }
+    showFields();
+    writeText();
     console.log(IBU);
   }
 
@@ -165,7 +199,11 @@
 
   function utilization(minutes){
     var u = 18.11 + 18.36 * tanh( (minutes-31.32) / 18.27 );
-    return u/100;
+    if(minutes < 20){
+      return u/75;
+    }else{
+      return u/200;
+    }
   }
 
   function tanh(x){
