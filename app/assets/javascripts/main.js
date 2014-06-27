@@ -129,7 +129,7 @@
   function writeText(){
     var string = "Total Volume "+totalVolume+"gallons | Boil Volume "+boilVolume+"gallons | "
     string += "Original Gravity "+origGravity.toFixed(3)+" | Boil Gravity "+boilGravity.toFixed(3)+" | "
-    string += "IBU "+Math.round(IBU)+" | "
+    string += "IBU "+Math.round(IBU)+" | \n"
     string += parseHops();
     string += parseMalts();
     string += "Notes: "
