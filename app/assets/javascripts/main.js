@@ -69,7 +69,6 @@
 
   function removeLine(){
     var parentLine = $(this).parent();
-    console.log(parentLine);
     parentLine.remove();
   }
 
@@ -133,8 +132,7 @@
     string += "IBU "+Math.round(IBU)+" | "
     string += parseHops();
     string += parseMalts();
-    console.log('maltArray', maltArray);
-    console.log('hopArray', hopArray);
+    string += "Notes: "
     $('#recipe_text').val(string);
   }
 
@@ -183,7 +181,6 @@
     }
     showFields();
     writeText();
-    console.log(IBU);
   }
 
   function getGravity(data, vol){
