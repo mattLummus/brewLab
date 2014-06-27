@@ -1,11 +1,13 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,700);
 
 body{
   font-family: 'Open Sans', sans-serif;
+  color: #354F00;
+  a: #354F00
 }
 
 #user_nav{
-  background-color: green;
+  background-color: #7B9F35;
   height: 80px;
   color: white;
   font-size: 30px;
@@ -14,10 +16,12 @@ body{
 
   a{ color: yellow; }
   #home_icon{
-    color: blue;
+    color: #1A4C80;
     font-size: 50px;
+    font-family: 'Lobster', cursive;
+    text-decoration: none;
+    text-shadow: white;
   }
-
 }
 
 #profile_photo{
@@ -38,4 +42,3 @@ body{
 #notes_title{
   
 }
-

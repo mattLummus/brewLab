@@ -25,7 +25,7 @@
   #recipe_calc
     #recipe_stats
     %form#recipe_form{:action => "/recipes", :method => "post"}
-      %input#recipe_title{:name => "title"}
+      %input#recipe_title{:name => "title", :placeholder => "Title"}
       %textarea#recipe_text{:name => "notes", :cols => "50", :rows => "4"}
       %input#recipe_submit{:type => "submit"}
     %button#ibu_button= "Get IBU!"
@@ -63,6 +63,7 @@
                 %td= "#{((hop.humulene_max + hop.humulene_min)/2).round(2)}"
               -if hop.myrcene_min?
                 %td= "#{((hop.myrcene_max + hop.myrcene_min)/2).round(2)}"
+    .right
       %h4 Malts
       %table#malt_table
         %th
