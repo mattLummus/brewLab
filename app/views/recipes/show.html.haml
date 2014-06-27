@@ -1,10 +1,10 @@
 %p#notice= notice
 
 %p
-  %b Title:
+  %b#notes_title Title:
   = @recipe.title
 %p
-  %b Notes:
+  %b#notes_text Notes:
   = @recipe.notes
 
 = link_to 'Edit', edit_recipe_path(@recipe)
