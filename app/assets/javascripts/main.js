@@ -54,6 +54,7 @@
     var $name = $('<input>');
     $name.val(ingName);
 
+    $($line).addClass("ing " + ingType);
     $($line).addClass(ingType);
     $($line).append($button);
     $($line).append($ingID);
