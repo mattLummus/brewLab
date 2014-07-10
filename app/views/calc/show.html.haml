@@ -98,9 +98,21 @@
       %table#malt_table
         %th
           %td Name
-          %td PPG
-          %td Dry Yield
-          %td SRM
+          %td{:class => "tooltip"}
+            PPG
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Points per Pound per Gallon; the potential yield of sugar from the ingredient, expressed in specific gravity units.
+          %td{:class => "tooltip"}
+            Dry Yield
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Equivalent to the PPG (potential yield), but expressed as a percentage of total weight converted.
+          %td{:class => "tooltip"}
+            SRM
+            %span
+              %img.callout{src: "src/callout.gif"}
+              SRM is a measurement of color specific to beers.
         -@malts.each do |malt|
           -if malt.potential?
             %tr
