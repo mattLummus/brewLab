@@ -65,7 +65,7 @@
     $($ingID).hide();
     $($unit).hide();
     $($name).hide();
-    $('#recipe_form').append($line);
+    $('#'+ingType+'_recipe_form').append($line);
   }
 
   function removeLine(){
