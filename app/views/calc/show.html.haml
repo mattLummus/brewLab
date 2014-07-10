@@ -8,12 +8,12 @@
         %p= @style.description
         %table#style_table
           %th
-            %td= "ABV Range"
-            %td= "OG Min"
-            %td= "FG Range"
-            %td= "IBU Range"
-            %td= "SRM Min"
-            %td= "SRM Max"
+            %td ABV Range
+            %td OG Min
+            %td FG Range
+            %td IBU Range
+            %td SRM Min
+            %td SRM Max
           %tr
             %td
               %td= "#{@style.abv_min}-#{@style.abv_max}"
@@ -40,13 +40,41 @@
       %table#hop_table
         %th
           %td Name
-          %td Alpha Acid
-          %td Beta Acid
-          %td Caryophyllene
-          %td Cohumulone
-          %td Farnesene
-          %td Humulene
-          %td Myrcene
+          %td{:class => "tooltip"}
+            Alpha Acid
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Alpha Acids impart bitterness during brewing
+          %td{:class => "tooltip"}
+            Beta Acid
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Beta Acids help maintain bitterness during aging
+          %td{:class => "tooltip"}
+            Caryophyllene
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Caryophyllene is an essential oil
+          %td{:class => "tooltip"}
+            Cohumulone
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Cohumulone is an essential oil
+          %td{:class => "tooltip"}
+            Farnesene
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Farnesene is an essential oil
+          %td{:class => "tooltip"}
+            Humulene
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Humulene is an essential oil
+          %td{:class => "tooltip"}
+            Myrcene
+            %span
+              %img.callout{src: "src/callout.gif"}
+              Myrcene is an essential oil
         -@hops.each do |hop|
           -if hop.alpha_acid_min?
             %tr
