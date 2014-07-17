@@ -1,9 +1,29 @@
 @import url(http://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,700);
 
+.message{
+  margin: 0px
+}
+
 body{
-  font-family: 'Open Sans', sans-serif;
-  color: #354F00;
-  a: #354F00
+  font-family: 'Open Sans', sans-serif !important;
+  color: #354F00 !important;
+}
+
+.font_style{
+  font-family: 'Open Sans', sans-serif !important;
+  color: #354F00 !important;
+  a:link {
+      color: #354F00 !important;
+  }
+  a:visited {
+      color: #354F00 !important;
+  }
+  a:hover {
+      color: #7D7D7D !important;
+  }
+  a:active {
+      color: #7D7D7D !important;
+  }
 }
 
 .full{
@@ -86,3 +106,5 @@ body{
     -webkit-box-shadow: 5px 5px 8px #CCC;
     box-shadow: 5px 5px 8px #CCC;
 }
+
+

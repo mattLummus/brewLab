@@ -1,14 +1,14 @@
 - if user_signed_in?
   .row
     .small-12.columns
-      %h1= link_to "Recipe Calculator", 'calc'
-      %h2= link_to "Recipes", '/recipes'
-      %h2= link_to "Beer Styles", 'styles/index'
-      %h2= link_to "Hop Styles", 'hops/index'
-      %h2= link_to "Malt Styles", 'malts/index'
+      %h1.font_style= link_to "Recipe Calculator", 'calc'
+      %h2.font_style= link_to "Recipes", '/recipes'
+      %h2.font_style= link_to "Beer Styles", 'styles/index'
+      %h2.font_style= link_to "Hop Styles", 'hops/index'
+      %h2.font_style= link_to "Malt Styles", 'malts/index'
 
 - else
   .row
     .small-12.columns
-      %h1 Welcome to brewLab!
-      %h3 brewLab is a recipe creation and data logging tool for home brewing (mmmm beeeer!)
+      %h1.font_style Welcome to brewLab!
+      %h3.font_style brewLab is a recipe creation and data logging tool for home brewing (mmmm beeeer!)

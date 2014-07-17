@@ -6,8 +6,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %p.notice= notice
-    %p.alert= alert
+    %p.notice.message= notice
+    %p.alert.message= alert
     #user_nav.full
       = link_to 'brewLab', '/', :id => 'home_icon'
       - if user_signed_in?

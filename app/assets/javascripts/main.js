@@ -18,7 +18,12 @@
     $('.ingredient').click(getIngredient);
     $('#recipe_form').on('click', '.remove_button', removeLine);
     $('#ibu_button').click(getVolume);
+    setTimeout(hideAlert, 1000);
     hideFields();
+  }
+
+  function hideAlert(){
+    $('.message').hide('slow');
   }
 
   function hideFields(){
@@ -42,7 +47,7 @@
     var ingUnit = data.getAttribute('dataunit');
 
     var $button = $('<button type="button">');
-    $button.addClass('remove_button');
+    $button.addClass('remove_button tiny');
     $button.text('Remove '+ingName);
     var $line = $('<div>');
     var $ingID = $('<input>');
