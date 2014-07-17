@@ -1,133 +1,143 @@
 - if user_signed_in?
-  #recipe_top_banner
-    %h1 Recipe Calculator
-    #style
-      -if @style
-        %h4= @style.name
-        %h5= @style.category.name
-        %p= @style.description
-        %table#style_table
-          %th
-            %td ABV Range
-            %td OG Min
-            %td FG Range
-            %td IBU Range
-            %td SRM Min
-            %td SRM Max
-          %tr
-            %td
-              %td= "#{@style.abv_min}-#{@style.abv_max}"
-              %td= "#{@style.og_min}"
-              %td= "#{@style.fg_min}-#{@style.fg_max}"
-              %td= "#{@style.ibu_min}-#{@style.ibu_max}"
-              %td{:class => "srm-#{@style.srm_min}"}= "#{@style.srm_min}"
-              %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
-  #recipe_calc
-    #recipe_stats
-    %form#recipe_form{:action => "/recipes", :method => "post"}
-      %input#recipe_title{:name => "title", :placeholder => "Title"}
-      %textarea#recipe_text{:name => "notes", :cols => "50", :rows => "4"}
-      %input#recipe_submit{:type => "submit"}
-      #hop_recipe_form
-      #malt_recipe_form
-    %button#ibu_button= "Get IBU!"
-    %input#total_vol_input{:placeholder => "Total Volume(gallons)"}
-    %input#boil_vol_input{:placeholder => "Boil Volume(gallons)"}
-
-  #recipe_ingredients
-    .left
-      %h4 Hops
-      %table#hop_table
-        %th
-          %td Name
-          %td{:class => "tooltip"}
-            Alpha Acid
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Alpha Acids impart bitterness during brewing and help sterilize beer.
-          %td{:class => "tooltip"}
-            Beta Acid
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Beta Acids maintain bitterness during aging and help sterilize beer.
-          %td{:class => "tooltip"}
-            Caryophyllene
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Caryophyllene ranges between 5-15% of total oil composition. It imparts spicy and herbal flavor notes. It is best utilized by boiling rather than dry hopping.
-          %td{:class => "tooltip"}
-            Cohumulone
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Traditionally, low Cohumulone levels are favored as it imparts an undesirable bitterness to beer (although this is currently in debate).
-          %td{:class => "tooltip"}
-            Farnesene
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Farnesene ranges between 0-20% of total oil composition. It imparts woody and earthy flavor notes. It is best utilized late in the boil or by dry hopping.
-          %td{:class => "tooltip"}
-            Humulene
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Humulene ranges between 15-45% of total oil composition. It imparts woody, herbal, and spicy flavor notes. It is best utilized late in the boil or by dry hopping.
-          %td{:class => "tooltip"}
-            Myrcene
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Myrcene ranges between 20-65% of total oil composition. It imparts floral, citrus, and piney flavor notes. It is best utilized only by dry hopping.
-        -@hops.each do |hop|
-          -if hop.alpha_acid_min?
-            %tr
-              %td
-              %td
-                %button{:name => "#{hop.name}", :class => "ingredient", :dataid => hop.id, :datatype => "hop", :dataunit => (hop.alpha_acid_min*1.10).round(2)}= hop.name
-              %td= "#{(hop.alpha_acid_min*1.10).round(2)}"
-              %td= "#{((hop.beta_acid_max + hop.beta_acid_min)/2).round(2)}"
-              -if hop.caryophyllene_min?
-                %td= "#{((hop.caryophyllene_max + hop.caryophyllene_min)/2).round(2)}"
-              -if hop.cohumulone_min?
-                %td= "#{((hop.cohumulone_max + hop.cohumulone_min)/2).round(2)}"
-              -if hop.farnesene_min?
-                %td= "#{((hop.farnesene_max + hop.farnesene_min)/2).round(2)}"
-              -if hop.humulene_min?
-                %td= "#{((hop.humulene_max + hop.humulene_min)/2).round(2)}"
-              -if hop.myrcene_min?
-                %td= "#{((hop.myrcene_max + hop.myrcene_min)/2).round(2)}"
-    .right
-      %h4 Malts
-      %table#malt_table
-        %th
-          %td Name
-          %td{:class => "tooltip"}
-            PPG
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Points per Pound per Gallon; the potential yield of sugar from the ingredient, expressed in specific gravity units.
-          %td{:class => "tooltip"}
-            Dry Yield
-            %span
-              %img.callout{src: "src/callout.gif"}
-              Equivalent to the PPG (potential yield), but expressed as a percentage of total weight converted.
-          %td{:class => "tooltip"}
-            SRM
-            %span
-              %img.callout{src: "src/callout.gif"}
-              SRM is a measurement of color specific to beers.
-        -@malts.each do |malt|
-          -if malt.potential?
-            %tr
-              %td
-              %td
-                %button{:name => "#{malt.name}", :class => "ingredient", :dataid => malt.id, :datatype => "malt", :dataunit => ((malt.potential-1)*1000).round(2)}= malt.name
-              %td= "#{((malt.potential-1)*1000).round(2)}"
-              %td= malt.dry_yield
-              -if malt.srm?
-                -if malt.srm_id.to_i < 19
-                  %td{:style => "background-color: ##{malt.srm.hex}"}= "#{malt.srm_id}"
-                -else
-                  %td{:style => "background-color: ##{malt.srm.hex}; color: white"}= "#{malt.srm_id}"
-              -else
+  .row
+    .small-12.columns
+      #recipe_top_banner
+        %h1 Recipe Calculator
+        #style
+          -if @style
+            %h4= @style.name
+            %h5= @style.category.name
+            %p= @style.description
+            %table#style_table
+              %th
+                %td ABV Range
+                %td OG Min
+                %td FG Range
+                %td IBU Range
+                %td SRM Min
+                %td SRM Max
+              %tr
                 %td
+                  %td= "#{@style.abv_min}-#{@style.abv_max}"
+                  %td= "#{@style.og_min}"
+                  %td= "#{@style.fg_min}-#{@style.fg_max}"
+                  %td= "#{@style.ibu_min}-#{@style.ibu_max}"
+                  %td{:class => "srm-#{@style.srm_min}"}= "#{@style.srm_min}"
+                  %td{:class => "srm-#{@style.srm_max}"}= "#{@style.srm_max}"
+  .row
+    .small-12.columns
+      #recipe_calc
+        #recipe_stats
+        %form#recipe_form{:action => "/recipes", :method => "post"}
+          %input#recipe_title{:name => "title", :placeholder => "Title"}
+          %textarea#recipe_text{:name => "notes", :cols => "50", :rows => "4"}
+          %input#recipe_submit{:type => "submit"}
+          #hop_recipe_form
+          #malt_recipe_form
+        .button.tiny#ibu_button= "Get IBU!"
+        %input#total_vol_input{:placeholder => "Total Volume(gallons)"}
+        %input#boil_vol_input{:placeholder => "Boil Volume(gallons)"}
+
+  .row
+    .small-12.columns
+      #recipe_ingredients
+        .row
+          .small-6.columns
+            .left
+              %h4 Hops
+              %table#hop_table
+                %th
+                  %td Name
+                  %td{:class => "tooltip"}
+                    Alpha Acid
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Alpha Acids impart bitterness during brewing and help sterilize beer.
+                  %td{:class => "tooltip"}
+                    Beta Acid
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Beta Acids maintain bitterness during aging and help sterilize beer.
+                  %td{:class => "tooltip"}
+                    Caryophyllene
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Caryophyllene ranges between 5-15% of total oil composition. It imparts spicy and herbal flavor notes. It is best utilized by boiling rather than dry hopping.
+                  %td{:class => "tooltip"}
+                    Cohumulone
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Traditionally, low Cohumulone levels are favored as it imparts an undesirable bitterness to beer (although this is currently in debate).
+                  %td{:class => "tooltip"}
+                    Farnesene
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Farnesene ranges between 0-20% of total oil composition. It imparts woody and earthy flavor notes. It is best utilized late in the boil or by dry hopping.
+                  %td{:class => "tooltip"}
+                    Humulene
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Humulene ranges between 15-45% of total oil composition. It imparts woody, herbal, and spicy flavor notes. It is best utilized late in the boil or by dry hopping.
+                  %td{:class => "tooltip"}
+                    Myrcene
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Myrcene ranges between 20-65% of total oil composition. It imparts floral, citrus, and piney flavor notes. It is best utilized only by dry hopping.
+                -@hops.each do |hop|
+                  -if hop.alpha_acid_min?
+                    %tr
+                      %td
+                      %td
+                        .button.tiny{:name => "#{hop.name}", :class => "ingredient", :dataid => hop.id, :datatype => "hop", :dataunit => (hop.alpha_acid_min*1.10).round(2)}= hop.name
+                      %td= "#{(hop.alpha_acid_min*1.10).round(2)}"
+                      %td= "#{((hop.beta_acid_max + hop.beta_acid_min)/2).round(2)}"
+                      -if hop.caryophyllene_min?
+                        %td= "#{((hop.caryophyllene_max + hop.caryophyllene_min)/2).round(2)}"
+                      -if hop.cohumulone_min?
+                        %td= "#{((hop.cohumulone_max + hop.cohumulone_min)/2).round(2)}"
+                      -if hop.farnesene_min?
+                        %td= "#{((hop.farnesene_max + hop.farnesene_min)/2).round(2)}"
+                      -if hop.humulene_min?
+                        %td= "#{((hop.humulene_max + hop.humulene_min)/2).round(2)}"
+                      -if hop.myrcene_min?
+                        %td= "#{((hop.myrcene_max + hop.myrcene_min)/2).round(2)}"
+        .row
+          .small-6.columns
+            .right
+              %h4 Malts
+              %table#malt_table
+                %th
+                  %td Name
+                  %td{:class => "tooltip"}
+                    PPG
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Points per Pound per Gallon; the potential yield of sugar from the ingredient, expressed in specific gravity units.
+                  %td{:class => "tooltip"}
+                    Dry Yield
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      Equivalent to the PPG (potential yield), but expressed as a percentage of total weight converted.
+                  %td{:class => "tooltip"}
+                    SRM
+                    %span
+                      %img.callout{src: "src/callout.gif"}
+                      SRM is a measurement of color specific to beers.
+                -@malts.each do |malt|
+                  -if malt.potential?
+                    %tr
+                      %td
+                      %td
+                        .button.tiny{:name => "#{malt.name}", :class => "ingredient", :dataid => malt.id, :datatype => "malt", :dataunit => ((malt.potential-1)*1000).round(2)}= malt.name
+                      %td= "#{((malt.potential-1)*1000).round(2)}"
+                      %td= malt.dry_yield
+                      -if malt.srm?
+                        -if malt.srm_id.to_i < 19
+                          %td{:style => "background-color: ##{malt.srm.hex}"}= "#{malt.srm_id}"
+                        -else
+                          %td{:style => "background-color: ##{malt.srm.hex}; color: white"}= "#{malt.srm_id}"
+                      -else
+                    %td
 
 - else
   %h1 Welcome to brewLab!
