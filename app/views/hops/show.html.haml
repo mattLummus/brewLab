@@ -1,21 +1,47 @@
 - if user_signed_in?
-  %h2= link_to "Hop Styles", '/hops/index'
-  %h2= @hop.name
-  - if @hop.country?
-    %h2= @hop.country.display_name
-  %p= @hop.description
-  %h4= "Alpha Acid minimum: #{@hop.alpha_acid_min}"
-  %h4= "Beta Acid minimum: #{@hop.beta_acid_min}"
-  %h4= "Beta Acid minimum: #{@hop.beta_acid_max}"
-  %h4= "Caryophyllene minimum: #{@hop.caryophyllene_min}"
-  %h4= "Caryophyllene maximum: #{@hop.caryophyllene_max}"
-  %h4= "Cohumulone minimum: #{@hop.cohumulone_min}"
-  %h4= "Cohumulone maximum: #{@hop.cohumulone_max}"
-  %h4= "Farnesene minimum: #{@hop.farnesene_min}"
-  %h4= "Farnesene maximum: #{@hop.farnesene_max}"
-  %h4= "Humulene minimum: #{@hop.humulene_min}"
-  %h4= "Humulene maximum: #{@hop.humulene_max}"
+  .row
+    .small-12.columns
+      %h2= link_to "Hop Styles", '/hops/index'
+  .row
+    .small-8.columns
+      %h2= @hop.name
+    .small-4.columns
+      - if @hop.country?
+        %h3= @hop.country.display_name
+  .row
+    .small-12.columns
+      %p= @hop.description
+  .row
+    .small-12.columns
+      %h4= "Alpha Acid minimum: #{@hop.alpha_acid_min}"
+  .row
+    .small-6.columns
+      %h4= "Beta Acid minimum: #{@hop.beta_acid_min}"
+    .small-6.columns
+      %h4= "Beta Acid minimum: #{@hop.beta_acid_max}"
+  .row
+    .small-6.columns
+      %h4= "Caryophyllene minimum: #{@hop.caryophyllene_min}"
+    .small-6.columns
+      %h4= "Caryophyllene maximum: #{@hop.caryophyllene_max}"
+  .row
+    .small-6.columns
+      %h4= "Cohumulone minimum: #{@hop.cohumulone_min}"
+    .small-6.columns
+      %h4= "Cohumulone maximum: #{@hop.cohumulone_max}"
+  .row
+    .small-6.columns
+      %h4= "Farnesene minimum: #{@hop.farnesene_min}"
+    .small-6.columns
+      %h4= "Farnesene maximum: #{@hop.farnesene_max}"
+  .row
+    .small-6.columns
+      %h4= "Humulene minimum: #{@hop.humulene_min}"
+    .small-6.columns
+      %h4= "Humulene maximum: #{@hop.humulene_max}"
 
 
 - else
-  %h2 Please Try Again
+  .row
+    .small-12.columns
+    %h2 Please Try Again

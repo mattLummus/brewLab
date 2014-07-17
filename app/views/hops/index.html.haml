@@ -1,14 +1,18 @@
 - if user_signed_in?
-  #columns
-    %h2 Hops
-    %ul#hops.list
-    - @hops.each do |hop|
-      - if hop.description?
-        %li.item
-          = link_to hop.name, "show?id=#{hop.id}"
+  .row
+    .small-12.columns
+      #columns
+        %h2 Hops
+        %ul#hops.list
+        - @hops.each do |hop|
+          - if hop.description?
+            %li.item.font_style.li_style
+              = link_to hop.name, "show?id=#{hop.id}"
 
 - else
-  %h1 Welcome to brewLab!
-  %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
-  %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
-  %h3 You can also enter data manually if you don't have access to an Arduino
+  .row
+    .small-12.columns
+      %h1 Welcome to brewLab!
+      %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
+      %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
+      %h3 You can also enter data manually if you don't have access to an Arduino

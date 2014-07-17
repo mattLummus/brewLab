@@ -1,14 +1,18 @@
 - if user_signed_in?
-  #columns
-    %h2 Malts
-    %ul#malts.list
-    - @malts.each do |malt|
-      - if malt.potential?
-        %li.item
-          = link_to malt.name, "show?id=#{malt.id}"
+  .row
+    .small-12.columns
+      #columns
+        %h2 Malts
+        %ul#malts.list
+        - @malts.each do |malt|
+          - if malt.potential?
+            %li.item.font_style.li_style
+              = link_to malt.name, "show?id=#{malt.id}"
 
 - else
-  %h1 Welcome to brewLab!
-  %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
-  %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
-  %h3 You can also enter data manually if you don't have access to an Arduino
+  .row
+    .small-12.columns
+      %h1 Welcome to brewLab!
+      %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
+      %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
+      %h3 You can also enter data manually if you don't have access to an Arduino

@@ -1,14 +1,18 @@
 - if user_signed_in?
-  #columns
-    %h2 Styles
-    %ul#styles.list
-    - @styles.each do |style|
-      - if style.abv_min?
-        %li.item
-          = link_to style.name, "show?id=#{style.id}"
+  .row
+    .small-12.columns
+      #columns
+        %h2 Styles
+        %ul#styles.list
+        - @styles.each do |style|
+          - if style.abv_min?
+            %li.item.font_style.li_style
+              = link_to style.name, "show?id=#{style.id}"
 
 - else
-  %h1 Welcome to brewLab!
-  %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
-  %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
-  %h3 You can also enter data manually if you don't have access to an Arduino
+  .row
+    .small-12.columns
+      %h1 Welcome to brewLab!
+      %h3 brewLab is a cloud based data logger for home brewing (mmm beeeer!)
+      %h3 brewLab supports autonomous datacollection via Wifi-Enabled Arduino and REST protocol
+      %h3 You can also enter data manually if you don't have access to an Arduino

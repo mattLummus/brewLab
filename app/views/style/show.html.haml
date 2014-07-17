@@ -1,18 +1,41 @@
 - if user_signed_in?
-  %h2= link_to "Beer Styles", "/styles/index"
-  %h2= link_to "Make This Beer", "/calc?id=#{@style.id}"
-  %h2= @style.name
-  %h3= @style.category.name
-  %p= @style.description
-  %h4= "ABV minimum: #{@style.abv_min}"
-  %h4= "ABV maximum: #{@style.abv_max}"
-  %h4= "Original Gravity minimum: #{@style.og_min}"
-  %h4= "Final Gravity minimum: #{@style.fg_min}"
-  %h4= "Final Gravity maximum: #{@style.fg_max}"
-  %h4= "IBU minimum: #{@style.ibu_min}"
-  %h4= "IBU maximum: #{@style.ibu_max}"
-  %h4= "SRM(color) minimum: #{@style.srm_min}"
-  %h4= "SRM(color) maximum: #{@style.srm_max}"
+  .row
+    .small-12.columns
+      %h2= link_to "Beer Styles", "/styles/index"
+      %h2= link_to "Make This Beer", "/calc?id=#{@style.id}"
+  .row
+    .small-8.columns
+      %h2= @style.name
+    .small-4.columns
+      %h3= @style.category.name
+  .row
+    .small-12.columns
+      %p= @style.description
+  .row
+    .small-12.columns
+      %h4= "Original Gravity minimum: #{@style.og_min}"
+  .row
+    .small-6.columns
+      %h4= "ABV minimum: #{@style.abv_min}"
+    .small-6.columns
+      %h4= "ABV maximum: #{@style.abv_max}"
+  .row
+    .small-6.columns
+      %h4= "Final Gravity minimum: #{@style.fg_min}"
+    .small-6.columns
+      %h4= "Final Gravity maximum: #{@style.fg_max}"
+  .row
+    .small-6.columns
+      %h4= "IBU minimum: #{@style.ibu_min}"
+    .small-6.columns
+      %h4= "IBU maximum: #{@style.ibu_max}"
+  .row
+    .small-6.columns
+      %h4= "SRM(color) minimum: #{@style.srm_min}"
+    .small-6.columns
+      %h4= "SRM(color) maximum: #{@style.srm_max}"
 
 - else
-  %h2 Please Try Again
+  .row
+    .small-12.columns
+      %h2 Please Try Again
